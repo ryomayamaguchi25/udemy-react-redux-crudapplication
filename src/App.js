@@ -29,7 +29,7 @@ const App = () => {
   )
 }
 
-const Cat = () => {
+const Cat = () => {//arrow function
   return <div>Meow!</div>
 }
 
