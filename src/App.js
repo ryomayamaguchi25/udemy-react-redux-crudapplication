@@ -1,40 +1,36 @@
 import React, { Component } from 'react';
-// function App() {
-//   return (
-//     <div>
 
-//       <p>
-//         Hello , World!!!
-//         </p>
-//     </div>
-//   );
-// }
-
-
-class App extends Component {
-  render() {
-    // const greeting = "HiHi!";
-    // const dom = <h1 className="foo">{greeting}</h1>;
-    // return dom;
-    return (
-      <React.Fragment>
-        <label htmlFor="bar">bar</label>
-        <input type="text" onChange={() => { console.log('TEST') }} />;
-      </React.Fragment>
-    )
-
-  }
-}
-//下のjavascriptと同じ意味
-
+//--------------------------------------------------------------------------------------------------------
+//Appというクラスがコンポーネントを継承して存在している。
+//このAppのことをクラスコンポーネントと言う
+//----------------------------------------------
 // class App extends Component {
 //   render() {
-//     return React.createElement(
-//       "div",
-//       null,
-//       "Hello,world!!!"
+//     return (
+//       <React.Fragment>
+//         <label htmlFor="bar">bare</label>
+//         <input type="text" onChange={() => { console.log('TEST') }} />;
+//       </React.Fragment>
 //     )
+
 //   }
 // }
+//--------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------------
+//ファンクショナルコンポーネント。関数コンポーネントは以下の通り
+const App = () => {
+  return (
+    <div>
+      <Cat />
+      <Cat />
+      <Cat />
+    </div>
+  )
+}
+
+const Cat = () => {
+  return <div>Meow!</div>
+}
 
 export default App;
