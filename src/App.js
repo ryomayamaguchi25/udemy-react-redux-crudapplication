@@ -1,36 +1,35 @@
 import React, { Component } from 'react';
-
-//--------------------------------------------------------------------------------------------------------
-//Appというクラスがコンポーネントを継承して存在している。
-//このAppのことをクラスコンポーネントと言う
-//----------------------------------------------
-// class App extends Component {
-//   render() {
-//     return (
-//       <React.Fragment>
-//         <label htmlFor="bar">bare</label>
-//         <input type="text" onChange={() => { console.log('TEST') }} />;
-//       </React.Fragment>
-//     )
-
-//   }
-// }
-//--------------------------------------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------------------------------------------------------------
-//ファンクショナルコンポーネント。関数コンポーネントは以下の通り
 const App = () => {
+  const profiles = [
+    {
+      name: 'taro',
+      age: 10
+    },
+    {
+      name: 'hanako',
+      age: 5
+    },
+    {
+      name: 'hanako'
+    }
+  ]
   return (
     <div>
-      <Cat />
-      <Cat />
-      <Cat />
+      {
+        profiles.map((profile, index) => {
+          return <User name={profile.name} age={profile.age} key={index} />
+        })
+      }
     </div>
   )
 }
 
-const Cat = () => {
-  return <div>Meow!</div>
+const User = (props) => {
+  return <div>Hi im {props.name}, and I'm {props.age}years old!</div>
+}
+
+User.defaultProps = {
+  age: '--'
 }
 
 export default App;
