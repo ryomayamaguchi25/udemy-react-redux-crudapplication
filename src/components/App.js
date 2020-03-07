@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const App = () => (<Counter></Counter>)
+import { increment, decrement } from '../actions';
 
-class Counter extends Component {
-  constructor(props) {//カウンタークラスのインスタンスが作成された際に、コンストラクターのメソッドが呼び出される。（初期化する）
-    super(props)//
-    this.state = { count: 0 }//初期化した後に、オブジェクトが作られる。今回はcounteが作られた。
-  }
-  handlePlusButton = () => {
-    const CurrentCount = this.state.count;
-    this.setState({ count: this.state.count + 1 })//setStateが実行されると、renderが再度描画される。
-  }
-  handleMinusButton = () => {
-    const CurrentCount = this.state.count;
-    this.setState({ count: this.state.count - 1 })
-    if (this.state.count % 2 == 0) {
-    }
-  }
+
+class App extends Component {
+
   render() {
+    const props = this.props;
     console.log(this.state);
     return (
       <React.Fragment>
-        <div>count:{this.state.count}</div>
-        <button onClick={this.handlePlusButton}>+1</button>
-        <button onClick={this.handleMinusButton}>-1</button>
+        <div>value:{props.value}</div>
+        <button onClick={props.increment}>+1</button>
+        <button onClick={props.decrement}>-1</button>
       </React.Fragment>
     )
   }
 }
 
-export default App;
+//ステートの情報からコンポーネントに必要な情報を取り出して、、コンポーネント内のプロップスとしてマッピングする機能を持つ関数
+//引数には　状態のトップレベルを示すstateをかいて、どういったオブジェクトをpropsとして対応させるのか　を戻り値として定義する
+const mapStateToProps = state => ({ value: state.count.value })
+
+
+// const mapDispatchToProps = dispatch => ({
+//   increment: () => dispatch(increment()),
+//   decrement: () => dispatch(decrement())
+// })
+
+const mapDispatchToProps = ({ increment, decrement })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
